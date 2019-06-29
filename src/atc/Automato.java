@@ -2,7 +2,9 @@
 package atc;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -16,29 +18,20 @@ public class Automato {
     private List<Estado> estados;
     private List<Transicao> transicoes;
     private Stack<Automato> pilhaAuto ;
-    
+    private Estado atual;
+
+ 
 
     public Automato() {
         this.estados = new ArrayList<>();
         this.transicoes = new ArrayList<>();
         this.finais = new ArrayList<>();
         this.pilhaAuto =  new Stack();
+       
     }
    
     
-    public static void main(String[] args) {
-       Automato a1 = Automato.automatoSimples('a');
-       Automato a2 = Automato.automatoSimples('b');
-      
-       Automato a3 = Automato.automatoAuxiliar();
-       Automato a4 = Automato.automatoAuxiliar();
-       Automato a5 = Automato.automatoAuxiliar();
        
-       a3.construirAuto(a1, a2);//Operação +
-       a4.concatenaAuto(a1, a2); // Operação .
-       a5.fechoKleen(a4);
-    }
-    
     //Operação +
     public void construirAuto(Automato a1, Automato a2 )
     {
@@ -112,6 +105,8 @@ public class Automato {
         
         
         automato.setInicial(ei);
+        automato.setAtual(ei);
+        
         
     
         return automato ;
@@ -176,5 +171,17 @@ public class Automato {
     public void setTransicoes(List<Transicao> transicoes) {
         this.transicoes = transicoes;
     }
+
+    public Estado getAtual() {
+        return atual;
+    }
+
+    public void setAtual(Estado atual) {
+        this.atual = atual;
+    }
     
+   
 }
+    
+    
+   
