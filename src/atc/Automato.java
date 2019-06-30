@@ -1,8 +1,6 @@
-
 package atc;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
@@ -77,21 +75,21 @@ public class Automato {
     
     public void fechoKleen(Automato a3)
     {
-        //Para operação +
+        /*Para operação +
         if(a3.getFinais().size()>1)
         {
             for(int i=0;i<a3.getFinais().size();i++)
             {
-                a3.transicoes.add(new Transicao(a3.transicoes.get(i).getDestino(),a3.transicoes.get(i).getOrigem() ,a3.transicoes.get(i).getSimbolo()));
+                a3.transicoes.add(new Transicao(a3.transicoes.get(i).getDestino(),a3.transicoes.get(i).getOrigem() ,'n'));
             }
             
         }else //Para operação .
-        {
+        {*/
              for(int i=0;i<a3.getFinais().size();i++)
             {
                 a3.transicoes.add(new Transicao(a3.getFinais().get(i),a3.inicial ,'*'));//Repassei n como se não consumisse nada, podemos trocar isso 
             }
-        }   
+        //}   
         
         System.out.println(a3);
     }
@@ -182,6 +180,3 @@ public class Automato {
     
    
 }
-    
-    
-   
