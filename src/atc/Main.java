@@ -28,15 +28,19 @@ public class Main {
         
         Automato a5 = Automato.automatoAuxiliar();
         a5.concatenaAuto(a4, a3);
+        Automato a6 = Automato.automatoAuxiliar();
+        a6.fechoKleen(a5);
 
       
 
         
 
-        reconheceLinguagem("ac", a5);
-        reconheceLinguagem("ab", a5);
-        reconheceLinguagem("bc", a5);
-        reconheceLinguagem("aa", a5);
+        reconheceLinguagem("ac", a6);
+        reconheceLinguagem("ab", a6);
+        reconheceLinguagem("bc", a6);
+        reconheceLinguagem("aa", a6);
+        reconheceLinguagem("bb", a6);
+        reconheceLinguagem("acbc", a6);
         
      
         
