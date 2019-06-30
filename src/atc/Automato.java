@@ -89,7 +89,7 @@ public class Automato {
         {
              for(int i=0;i<a3.getFinais().size();i++)
             {
-                a3.transicoes.add(new Transicao(a3.getFinais().get(i),a3.inicial ,'n'));//Repassei n como se não consumisse nada, podemos trocar isso 
+                a3.transicoes.add(new Transicao(a3.getFinais().get(i),a3.inicial ,'*'));//Repassei n como se não consumisse nada, podemos trocar isso 
             }
         }   
         
