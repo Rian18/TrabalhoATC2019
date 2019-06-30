@@ -37,12 +37,20 @@ public class Main {
 
         
 
+        reconheceLinguagem("acac", a6);
+        reconheceLinguagem("abac", a6);
+        reconheceLinguagem("abacacc", a6);
+        reconheceLinguagem("abacac", a6);
+        reconheceLinguagem("abacac", a6);
+        reconheceLinguagem("abacad", a6);
+        reconheceLinguagem("abazcad", a6);
+        reconheceLinguagem("aba", a6);
+        reconheceLinguagem("abc", a6);
+        reconheceLinguagem("bcac", a6);
+        reconheceLinguagem("bcaa", a6);
         reconheceLinguagem("ac", a6);
-        reconheceLinguagem("ab", a6);
-        reconheceLinguagem("bc", a6);
-        reconheceLinguagem("aa", a6);
-        reconheceLinguagem("bb", a6);
-        reconheceLinguagem("acbc", a6);
+        reconheceLinguagem("acacacaca", a6);
+        reconheceLinguagem("acbcac", a6);
         
      
         
@@ -57,14 +65,19 @@ public class Main {
     public static void reconheceLinguagem(String chave, Automato automato) {
 
          Estado inicial = automato.getInicial();
-         List<Transicao> possiveisTransicoes = new ArrayList<>();
+         
          int flag = 0;
          
+         //toda vez que chamar o automato esse trem devera ser setado
+         int flag_not_in=1;
+         int flag_not_finals=0;
          
         for (int i = 0; i < chave.length(); i++) {
             flag = 0;
             char c = chave.charAt(i);
-
+            
+            List<Transicao> possiveisTransicoes = new ArrayList<>();
+            
             for (int j = 0; j < automato.getTransicoes().size(); j++) {
                 
                 if (automato.getTransicoes().get(j).getSimbolo() == c ||automato.getTransicoes().get(j).getSimbolo() == '*' ) {
@@ -72,18 +85,40 @@ public class Main {
                 }
             }
             
+           Estado auxiliar = new Estado();
+           auxiliar = automato.getAtual();
         for (Transicao transicao:possiveisTransicoes){
             
             if(transicao.getOrigem() == automato.getAtual()){
                 
-                automato.setAtual(transicao.getDestino());
-                flag = 1;
+                if(transicao.getSimbolo()=='*'){
+                    automato.setAtual(transicao.getDestino());
+                    flag = 1;
+                    i=i-1;
+                    break;
+                }else{
+                    automato.setAtual(transicao.getDestino());
+                    flag = 1;
+                    break;
+                    }
+                }
+          
             }
-
-        }
+        
+        if(auxiliar==automato.getAtual()){
+           flag_not_in=0; 
         }
         
-        if(flag==0){
+          
+        }
+        
+        
+        for(Estado estado: automato.getFinais()){
+            if(estado == automato.getAtual())
+                flag_not_finals=1;
+        }
+        
+        if(flag==0 || flag_not_in==0 || flag_not_finals==0){
             System.out.println("Não Reconhece: " + chave);
             
         }
