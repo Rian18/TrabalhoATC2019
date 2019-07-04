@@ -61,27 +61,44 @@ public class Main {
     public static void marcadorPalavra(char[] palavraForChar)
     {
        
-        char[] auxiliar = new char[palavraForChar.length];
-        String teste = new String();
+        List<Palavra> tagsDivididas = new ArrayList<>();
+        String trechoPalavra = new String();
+        
         for(int i=0; i<palavraForChar.length;i++)
         {              
-            auxiliar[i]= palavraForChar[i];
-            teste +=Character.toString(palavraForChar[i]);
+          
+            trechoPalavra +=Character.toString(palavraForChar[i]);
+           
             
             System.out.println(Character.toString(palavraForChar[i])); 
-            Reconhecedor.reconheceLinguagem(teste, AutomatoDAO.getInstance());
+            Reconhecedor.reconheceLinguagem(trechoPalavra, AutomatoDAO.getInstance());
             if(Reconhecedor.isReconhece())
             { 
-                System.out.println("Reconhece até aqui "+ auxiliar);
-            
+               
+                System.out.println("Reconhece até aqui "+ trechoPalavra);
+                          
             }else
             {
-                System.out.println("PAROU Aqui: " + auxiliar);
+                Palavra palavra = new Palavra(trechoPalavra,Reconhecedor.getTag());
+                tagsDivididas.add(palavra);
+               for(int j=1;j<tagsDivididas.size();j++)
+               {
+                   if(tagsDivididas.get(j)==tagsDivididas.get(j-1))
+                   {
+                       tagsDivididas.get(j-1).setTag("");
+                   }
+               }
+                
+                System.out.println("PAROU Aqui: " + trechoPalavra);
             }
             
           
         
         }
+         for(int j=0;j<tagsDivididas.size();j++)
+          {
+              System.out.println(tagsDivididas.get(j).getTag()  + " ");
+          }
     
     }
 

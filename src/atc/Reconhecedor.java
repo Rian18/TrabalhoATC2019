@@ -10,6 +10,7 @@ import java.util.List;
 public class Reconhecedor {
 
     private static boolean reconhece;
+    private static String tag;
     public static void reconheceLinguagem(String chave, List<Automato> automatos) {
 
         for (int k = 0; k < automatos.size(); k++) {
@@ -71,6 +72,7 @@ public class Reconhecedor {
             } else {
                 System.out.println(automatos.get(k).getNome() + " reconhece: " + chave);
                 automatos.get(k).setAtual(automatos.get(k).getInicial());
+                setTag(automatos.get(k).getNome());
                 setReconhece(true);
              
             }
@@ -87,5 +89,15 @@ public class Reconhecedor {
     
     public static void setReconhece(boolean aReconhece) {
         reconhece = aReconhece;
+    }
+
+    
+    public static String getTag() {
+        return tag;
+    }
+
+  
+    public static void setTag(String aTag) {
+        tag = aTag;
     }
 }
