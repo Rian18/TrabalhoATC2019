@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Reconhecedor {
 
+    private static boolean reconhece;
     public static void reconheceLinguagem(String chave, List<Automato> automatos) {
 
         for (int k = 0; k < automatos.size(); k++) {
@@ -65,13 +66,26 @@ public class Reconhecedor {
 
             if (flag == 0 || flag_not_in == 0 || flag_not_finals == 0) {
                 System.out.println(automatos.get(k).getNome() + " não Reconhece: " + chave);
-
+                automatos.get(k).setAtual(automatos.get(k).getInicial());
+                setReconhece(false);
             } else {
                 System.out.println(automatos.get(k).getNome() + " reconhece: " + chave);
+                automatos.get(k).setAtual(automatos.get(k).getInicial());
+                setReconhece(true);
+             
             }
-            automatos.get(k).setAtual(automatos.get(k).getInicial());
+            setReconhece(false);
         }
-
+       
     }
 
+  
+    public static boolean isReconhece() {
+        return reconhece;
+    }
+
+    
+    public static void setReconhece(boolean aReconhece) {
+        reconhece = aReconhece;
+    }
 }

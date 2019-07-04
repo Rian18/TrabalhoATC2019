@@ -27,8 +27,12 @@ public class Main {
             } else if (comando.contentEquals(":q")) {
                 // System.exit(0);
             } else if (comando.contentEquals(":p")) {
+                //Inserir rotina para reconhecimento de cada parte. 
                 String palavra = cmd.nextLine();
-                Reconhecedor.reconheceLinguagem(palavra, AutomatoDAO.getInstance());
+                           
+                char[] palavraForChar = palavra.toCharArray();
+                //Reconhecedor.reconheceLinguagem(palavra, AutomatoDAO.getInstance());
+                marcadorPalavra(palavraForChar);
             } else {
 
                 String[] tag = comando.split(": ");
@@ -52,6 +56,33 @@ public class Main {
             }
             comando = cmd.nextLine();
         }
+    }
+    
+    public static void marcadorPalavra(char[] palavraForChar)
+    {
+       
+        char[] auxiliar = new char[palavraForChar.length];
+        String teste = new String();
+        for(int i=0; i<palavraForChar.length;i++)
+        {              
+            auxiliar[i]= palavraForChar[i];
+            teste +=Character.toString(palavraForChar[i]);
+            
+            System.out.println(Character.toString(palavraForChar[i])); 
+            Reconhecedor.reconheceLinguagem(teste, AutomatoDAO.getInstance());
+            if(Reconhecedor.isReconhece())
+            { 
+                System.out.println("Reconhece até aqui "+ auxiliar);
+            
+            }else
+            {
+                System.out.println("PAROU Aqui: " + auxiliar);
+            }
+            
+          
+        
+        }
+    
     }
 
 }

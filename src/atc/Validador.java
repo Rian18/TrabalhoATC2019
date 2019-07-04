@@ -48,6 +48,11 @@ public class Validador {
                 }
             }
         }
+        
+        if(pilhaTag.size()>1)
+        {
+            return false;
+        }
 
         return true;
     }
