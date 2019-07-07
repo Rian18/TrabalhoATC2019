@@ -239,9 +239,11 @@ public class Main {
                     } else {
                         if (posicao + cont - 1 > palavra.length() - 1) {
                             palavrasAuxiliar.add(palavra.substring(posicao));
+                            mapComparacaoString.put(automatos.get(k), palavra.substring(posicao));
 
                         }
                         palavrasAuxiliar.add(palavra.substring(posicao, posicao + cont - 1));
+                        mapComparacaoString.put(automatos.get(k), palavra.substring(posicao, posicao + cont - 1));
                     }
                 }
             }
